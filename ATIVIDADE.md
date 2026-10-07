@@ -58,8 +58,18 @@ Envie o link de um repositório GitHub do grupo. Ele deve conter:
 
 1. `app.py` — a aplicação Streamlit.
 2. `data/sensores.csv` — a base utilizada.
-3. `requirements.txt` — as bibliotecas necessárias para executar o projeto.
-4. `README.md` — instruções para instalar e abrir a aplicação, nome do modelo, métricas, regra das ações e limitações.
+3. `pyproject.toml` e `uv.lock` — configuração do Python e dependências do projeto com uv.
+4. `README.md` — instruções para abrir a aplicação, nome do modelo, métricas, regra das ações e limitações.
+
+O template já fixa Python 3.12. Para preparar o ambiente e executar a aplicação, use:
+
+```powershell
+uv python install 3.12
+uv sync
+uv run streamlit run app.py
+```
+
+O arquivo `requirements.txt` também pode ser mantido para quem precisar instalar dependências sem uv.
 
 O código pode ficar todo em `app.py` ou ser separado em outros arquivos. O importante é que outra pessoa consiga executar o projeto seguindo o README.
 
@@ -74,7 +84,7 @@ Escrevam as respostas com base nos resultados que apareceram na aplicação. Fer
 
 ## Como saber se terminou
 
-- A aplicação abre com `streamlit run app.py`.
+- A aplicação abre com `uv run streamlit run app.py`.
 - A página usa o CSV fornecido e mostra tabela, gráfico e contagem das classes.
 - O modelo é treinado com os dados e avaliado em dados separados para teste.
 - Ao alterar os valores dos sensores, a previsão e o risco vêm do modelo treinado.
